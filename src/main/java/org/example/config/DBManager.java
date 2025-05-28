@@ -7,16 +7,16 @@ import java.sql.SQLException;
 public class DBManager {
     private static final String URL = "jdbc:mysql://localhost:3306/library";
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "dirtig-xyxzem-0piwkA";
 
-    private static Connection connection;
+    public static Connection connection;
 
     public static Connection initConnection() {
         try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connections success!");
         } catch (SQLException exception) {
-            System.out.println(exception.getLocalizedMessage());
+            System.out.println(exception.getMessage());
         }
         return connection;
     }
