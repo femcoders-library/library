@@ -113,13 +113,12 @@ public class BookView {
             System.out.println("-----------------------------");*/
 
             System.out.printf("""
-                    Título: %s
-                    Sinopsis: %s
+                    \nTítulo: %s
                     ISBN: %s
                     Autor/a/es/as: %s
                     Género/s: %s
-                    -----------------------------
-                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                    \n-----------------------------
+                    """, book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre());
 
         }
     }
@@ -135,12 +134,12 @@ public class BookView {
         } else {
             for (Book book : foundBooks) {
                 System.out.printf("""
-                    Título: %s
+                    \nTítulo: %s
                     Sinopsis: %s
                     ISBN: %s
                     Autor/a/es/as: %s
                     Género/s: %s
-                    -----------------------------
+                    \n-----------------------------
                     """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
             }
         }
@@ -153,16 +152,16 @@ public class BookView {
         List<Book> foundBooks = bookController.findByAuthor(author);
 
         if (foundBooks.isEmpty()) {
-            System.out.println("No se encontraron libros con ese/esa/esos/esas autor/a/es/as.");
+            System.out.println("No se encontraron libros con ese/a/os/as autor/a/es/as.");
         } else {
             for (Book book : foundBooks) {
                 System.out.printf("""
-                    Título: %s
+                    \nTítulo: %s
                     Sinopsis: %s
                     ISBN: %s
                     Autor/a/es/as: %s
                     Género/s: %s
-                    -----------------------------
+                    \n-----------------------------
                     """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
             }
         }

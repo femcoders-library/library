@@ -15,7 +15,7 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Library Menu ===");
+            System.out.println("\n=== Library Menu ===\n");
             System.out.println("1. View all books");
             System.out.println("2. Add a new book");
             System.out.println("3. Edit a book");
@@ -23,37 +23,43 @@ public class Main {
             System.out.println("5. Find book/s by title");
             System.out.println("6. Find book/s by author");
             System.out.println("7. Exit");
-            System.out.print("Select an option: ");
+            System.out.print("\nSelect an option: ");
 
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
+                    System.out.println("-----------------------------");
                     bookView.displayBooks();
                     break;
                 case "2":
+                    System.out.println("-----------------------------");
                     bookView.createBook();
                     break;
                 case "3":
                     // Uncomment the one you use
                     // bookView.updateBook();
+                    System.out.println("-----------------------------");
                     bookView.updateBookByField();
                     break;
                 case "4":
+                    System.out.println("-----------------------------");
                     bookView.deleteBook();
                     break;
                 case "5":
+                    System.out.println("-----------------------------");
                     bookView.findByTitle();
                     break;
                 case "6":
+                    System.out.println("-----------------------------");
                     bookView.findByAuthor();
                     break;
                 case "7":
-                    System.out.println("Goodbye!");
+                    System.out.println("\nGoodbye!");
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("\nInvalid option. Please try again.");
             }
         }
         scanner.close();
