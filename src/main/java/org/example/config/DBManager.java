@@ -16,7 +16,6 @@ public class DBManager {
     public static Connection initConnection() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connections success!");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         }
@@ -26,7 +25,6 @@ public class DBManager {
     public static Connection closeConnection() {
         try {
             connection.close();
-            System.out.println("Conexion cerrada correctamente");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         }

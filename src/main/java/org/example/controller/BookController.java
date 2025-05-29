@@ -19,6 +19,9 @@ public class BookController {
     public void updateBook(String isbn, Book book) {
         bookRepository.updateBook(isbn, book);
     }
+    public void deleteBook(String isbn) {
+        bookRepository.deleteBook(isbn);
+    }
 
     public List<Book> getAllBooks() {
         return bookRepository.findAllBooks();

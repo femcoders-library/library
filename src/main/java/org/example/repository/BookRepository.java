@@ -49,7 +49,10 @@ public class BookRepository {
             statement.setString(3, book.getSynopsis());
             statement.setString(4, book.getGenre());
             statement.setString(5, book.getIsbn());
+
             statement.executeUpdate();
+
+            System.out.println("Libro actualizado");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
@@ -57,9 +60,24 @@ public class BookRepository {
         }
     }
 
-    // Example method to delete a book
-    public void deleteBook(int id) {
-        // Implementation for deleting a book from the database
+    public void deleteBook(String isbn) {
+        if (!existByISBN(isbn)) {
+            return;
+        }
+        String querySQLDelete = "DELETE FROM books WHERE isbn = ?";
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement statement = connection.prepareStatement(querySQLDelete);
+            statement.setString(1, isbn);
+
+            statement.executeUpdate();
+
+            System.out.println("Libro eliminado");
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
     }
 
     public List<Book> findAllBooks() {

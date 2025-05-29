@@ -11,9 +11,10 @@ public class Main {
         BookController bookController = new BookController(bookRepository);
         BookView bookView = new BookView(bookController);
 
-        bookView.updateBook();
-        //bookView.createBook();
 
+        //bookView.createBook();
         //bookView.displayBooks();
+        //bookView.updateBook();
+        bookView.deleteBook();
     }
 }

@@ -19,11 +19,11 @@ public class BookView {
     }
 
     public void updateBook() {
-        System.out.println("Put isbn: ");
+        System.out.println("Introduce el ISBN del libro que quieras actualizar: ");
         String isbn = scanner.nextLine();
 
         if (!bookController.existByISBN(isbn)) {
-            System.out.println("Exit with such isbn");
+            System.out.println("No existe ningún libro con el ISBN introducido");
             return;
         }
 
@@ -32,16 +32,22 @@ public class BookView {
         bookController.updateBook(isbn, book);
     }
 
-    public Book generateBook() {
-        System.out.print("Enter book title: ");
-        String title = scanner.nextLine();
-        System.out.print("Enter book synopsis: ");
-        String synopsis = scanner.nextLine();
-        System.out.print("Enter book ISBN: ");
+    public void deleteBook() {
+        System.out.println("Introduce el ISBN del libro que quieras eliminar de la librería: ");
         String isbn = scanner.nextLine();
-        System.out.print("Enter book author: ");
+        bookController.deleteBook(isbn);
+    }
+
+    public Book generateBook() {
+        System.out.print("Introduce el título del libro: ");
+        String title = scanner.nextLine();
+        System.out.print("Introduce la sinopsis del libro: ");
+        String synopsis = scanner.nextLine();
+        System.out.print("Introduce el ISBN del libro: ");
+        String isbn = scanner.nextLine();
+        System.out.print("Introduce el/la/los/las autor/a/es/as del libro: ");
         String author = scanner.nextLine();
-        System.out.print("Enter book genre: ");
+        System.out.print("Introduce el/los género/s del libro: ");
         String genre = scanner.nextLine();
 
         Book book = new Book(title, synopsis, isbn, author, genre);
@@ -50,14 +56,13 @@ public class BookView {
     }
 
     public Book generateBookWithoutISBN() {
-        System.out.print("Enter book title: ");
+        System.out.print("Introduce el título del libro: ");
         String title = scanner.nextLine();
-        System.out.print("Enter book synopsis: ");
+        System.out.print("Introduce la sinopsis del libro: ");
         String synopsis = scanner.nextLine();
-        //String isbn = null;
-        System.out.print("Enter book author: ");
+        System.out.print("Introduce el/la/los/las autor/a/es/as del libro: ");
         String author = scanner.nextLine();
-        System.out.print("Enter book genre: ");
+        System.out.print("Introduce el/los género/s del libro: ");
         String genre = scanner.nextLine();
 
         Book book = new Book(title, synopsis, null, author, genre);
@@ -68,11 +73,11 @@ public class BookView {
     public void displayBooks() {
 
         for (Book book : bookController.getAllBooks()) {
-            System.out.println("Title: " + book.getTitle());
-            System.out.println("Synopsis: " + book.getSynopsis());
+            System.out.println("Título: " + book.getTitle());
+            System.out.println("Sinopsis: " + book.getSynopsis());
             System.out.println("ISBN: " + book.getIsbn());
-            System.out.println("Author: " + book.getAuthor());
-            System.out.println("Genre: " + book.getGenre());
+            System.out.println("Autor/a/es/as: " + book.getAuthor());
+            System.out.println("Género/S: " + book.getGenre());
             System.out.println("-----------------------------");
         }
     }
