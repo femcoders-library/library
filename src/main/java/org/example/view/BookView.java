@@ -10,9 +10,12 @@ public class BookView {
     public BookView(BookController bookController) {
         this.bookController = bookController;
     }
-    public void createBook(String title, String synopsis, String isbn, String author, String genre) {
-        bookController.createBook(title, synopsis, isbn, author, genre);
+
+    public void createBook() {
+        Book book = generateBook();
+        bookController.createBook(book);
     }
+
     public Book generateBook() {
         Scanner scanner = new Scanner(System.in);
         // This method will generate a book object based on user input
@@ -27,12 +30,7 @@ public class BookView {
         System.out.print("Enter book genre: ");
         String genre = scanner.nextLine();
         // Create a new Book object with the provided details
-        Book book = new Book();
-        book.setTitle(title);
-        book.setSynopsis(synopsis);
-        book.setIsbn(isbn);
-        book.setAuthor(author);
-        book.setGenre(genre);
+        Book book = new Book(title, synopsis, isbn, author, genre);
         scanner.close();
         // Return the newly created book object
         return book;
@@ -41,7 +39,6 @@ public class BookView {
     public void displayBooks() {
         // This method will display all books in the library
         for (Book book : bookController.getAllBooks()) {
-            System.out.println("ID: " + book.getId());
             System.out.println("Title: " + book.getTitle());
             System.out.println("Synopsis: " + book.getSynopsis());
             System.out.println("ISBN: " + book.getIsbn());

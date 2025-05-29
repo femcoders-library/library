@@ -9,10 +9,10 @@ public class BookController {
     private final BookRepository bookRepository;
 
     public BookController(BookRepository bookRepository) {
-        this.bookRepository = new BookRepository();
+        this.bookRepository = bookRepository;
     }
-    public void createBook(String title, String synopsis, String isbn, String author, String genre) {
-        bookRepository.addBook(title, synopsis, isbn, author, genre);
+    public void createBook(Book book){
+        bookRepository.addBook(book);
     }
 
     public List<Book> getAllBooks() {

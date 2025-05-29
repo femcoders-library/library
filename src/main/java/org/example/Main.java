@@ -11,11 +11,7 @@ public class Main {
         BookController bookController = new BookController(bookRepository);
         BookView bookView = new BookView(bookController);
 
-        bookView.createBook( "1984",
-                             "A dystopian novel by George Orwell",
-                             "1234567890",
-                             "George Orwell",
-                             "Dystopian");
+        bookView.createBook();
 
         bookView.displayBooks();
     }
