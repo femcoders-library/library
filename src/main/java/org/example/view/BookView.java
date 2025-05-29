@@ -3,6 +3,9 @@ package org.example.view;
 import org.example.controller.BookController;
 import org.example.model.Book;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class BookView {
@@ -28,8 +31,37 @@ public class BookView {
         }
 
         Book book = generateBookWithoutISBN();
-        book.setIsbn(isbn);
         bookController.updateBook(isbn, book);
+    }
+
+    public void updateBookByField() {
+        System.out.println("Introduzca el ISBN del libro que desea actualizar:");
+        String isbn = scanner.nextLine();
+
+        if (!bookController.existByISBN(isbn)) {
+            System.out.println("No existe un libro con este ISBN.");
+            return;
+        }
+
+        Map<String, String> fieldsToUpdate = new HashMap<>();
+        while (true) {
+            System.out.println("¿Qué campo quieres actualizar? (title, synopsis, author, genre): ");
+            System.out.println("Escriba “exit” para salir.");
+            String field = scanner.nextLine().toLowerCase();
+
+            if (field.equals("exit")) break;
+
+            if (!List.of("title", "synopsis", "author", "genre").contains(field)) {
+                System.out.println("Campo inválido.");
+                continue;
+            }
+
+            System.out.println("Introduzca un nuevo valor para " + field + ":");
+            String value = scanner.nextLine();
+            fieldsToUpdate.put(field, value);
+        }
+
+        bookController.updateBookByField(isbn, fieldsToUpdate);
     }
 
     public void deleteBook() {
@@ -73,12 +105,22 @@ public class BookView {
     public void displayBooks() {
 
         for (Book book : bookController.getAllBooks()) {
-            System.out.println("Título: " + book.getTitle());
+/*            System.out.println("Título: " + book.getTitle());
             System.out.println("Sinopsis: " + book.getSynopsis());
             System.out.println("ISBN: " + book.getIsbn());
             System.out.println("Autor/a/es/as: " + book.getAuthor());
             System.out.println("Género/S: " + book.getGenre());
-            System.out.println("-----------------------------");
+            System.out.println("-----------------------------");*/
+
+            System.out.printf("""
+                    Título: %s
+                    Sinopsis: %s
+                    ISBN: %s
+                    Autor/a/es/as: %s
+                    Género/S: %s
+                    -----------------------------
+                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+
         }
     }
 }

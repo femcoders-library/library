@@ -4,6 +4,7 @@ import org.example.model.Book;
 import org.example.repository.BookRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public class BookController {
     private final BookRepository bookRepository;
@@ -19,6 +20,11 @@ public class BookController {
     public void updateBook(String isbn, Book book) {
         bookRepository.updateBook(isbn, book);
     }
+
+    public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
+        bookRepository.updateBookByField(isbn, fieldsToUpdate);
+    }
+
     public void deleteBook(String isbn) {
         bookRepository.deleteBook(isbn);
     }

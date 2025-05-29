@@ -6,6 +6,7 @@ import org.example.model.Book;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class BookRepository {
 
@@ -53,6 +54,51 @@ public class BookRepository {
             statement.executeUpdate();
 
             System.out.println("Libro actualizado");
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
+    }
+
+    public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
+        if (!existByISBN(isbn)) {
+            System.out.println("No se encontró ningún libro con este ISBN.");
+            return;
+        }
+
+        if (fieldsToUpdate == null || fieldsToUpdate.isEmpty()) {
+            System.out.println("No hay campos para actualizar.");
+            return;
+        }
+
+        StringBuilder query = new StringBuilder("UPDATE books SET ");
+        List<String> fieldNames = new ArrayList<>();
+        for (String field : fieldsToUpdate.keySet()) {
+            query.append(field).append(" = ?, ");
+            fieldNames.add(field);
+        }
+
+        query.setLength(query.length() - 2);
+        query.append(" WHERE isbn = ?");
+
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement statement = connection.prepareStatement(query.toString());
+
+            int index = 1;
+            for (String field : fieldNames) {
+                statement.setString(index++, fieldsToUpdate.get(field));
+            }
+            statement.setString(index, isbn);
+
+            int updated = statement.executeUpdate();
+            if (updated > 0) {
+                System.out.println("El libro se actualizó exitosamente.");
+            } else {
+                System.out.println("Error al actualizar el libro.");
+            }
+
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
