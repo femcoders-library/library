@@ -20,7 +20,9 @@ public class Main {
             System.out.println("2. Add a new book");
             System.out.println("3. Edit a book");
             System.out.println("4. Delete a book");
-            System.out.println("5. Exit");
+            System.out.println("5. Find book/s by title");
+            System.out.println("6. Find book/s by author");
+            System.out.println("7. Exit");
             System.out.print("Select an option: ");
 
             String choice = scanner.nextLine();
@@ -41,6 +43,12 @@ public class Main {
                     bookView.deleteBook();
                     break;
                 case "5":
+                    bookView.findByTitle();
+                    break;
+                case "6":
+                    bookView.findByAuthor();
+                    break;
+                case "7":
                     System.out.println("Goodbye!");
                     running = false;
                     break;

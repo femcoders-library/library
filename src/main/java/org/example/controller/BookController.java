@@ -36,4 +36,12 @@ public class BookController {
     public boolean existByISBN(String isbn) {
         return bookRepository.existByISBN(isbn);
     }
+
+    public List<Book> findByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
+
+    public List<Book> findByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
 }
