@@ -13,8 +13,9 @@ public class Main {
 
 
         //bookView.createBook();
-        //bookView.displayBooks();
+        bookView.displayBooks();
         //bookView.updateBook();
-        bookView.deleteBook();
+        //bookView.deleteBook();
+        //bookView.updateBookByField();
     }
 }
