@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class BookView {
     private final BookController bookController;
+    private Scanner scanner = new Scanner(System.in);
+
     public BookView(BookController bookController) {
         this.bookController = bookController;
     }
@@ -16,9 +18,21 @@ public class BookView {
         bookController.createBook(book);
     }
 
+    public void updateBook() {
+        System.out.println("Put isbn: ");
+        String isbn = scanner.nextLine();
+
+        if (!bookController.existByISBN(isbn)) {
+            System.out.println("Exit with such isbn");
+            return;
+        }
+
+        Book book = generateBookWithoutISBN();
+        book.setIsbn(isbn);
+        bookController.updateBook(isbn, book);
+    }
+
     public Book generateBook() {
-        Scanner scanner = new Scanner(System.in);
-        // This method will generate a book object based on user input
         System.out.print("Enter book title: ");
         String title = scanner.nextLine();
         System.out.print("Enter book synopsis: ");
@@ -29,15 +43,30 @@ public class BookView {
         String author = scanner.nextLine();
         System.out.print("Enter book genre: ");
         String genre = scanner.nextLine();
-        // Create a new Book object with the provided details
+
         Book book = new Book(title, synopsis, isbn, author, genre);
-        scanner.close();
-        // Return the newly created book object
+
+        return book;
+    }
+
+    public Book generateBookWithoutISBN() {
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter book synopsis: ");
+        String synopsis = scanner.nextLine();
+        //String isbn = null;
+        System.out.print("Enter book author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter book genre: ");
+        String genre = scanner.nextLine();
+
+        Book book = new Book(title, synopsis, null, author, genre);
+
         return book;
     }
 
     public void displayBooks() {
-        // This method will display all books in the library
+
         for (Book book : bookController.getAllBooks()) {
             System.out.println("Title: " + book.getTitle());
             System.out.println("Synopsis: " + book.getSynopsis());
