@@ -1,11 +1,11 @@
 package org.example.repository;
+
 import org.example.config.DBManager;
 import org.example.model.Book;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.example.config.DBManager.connection;
 
 public class BookRepository {
 
@@ -33,17 +33,28 @@ public class BookRepository {
         }
     }
 
-    // Example method to retrieve a book by its ID
-    public void getBookById(int id) {
-        // Implementation for retrieving a book from the database by its ID
-    }
+    public void updateBook(String isbn, Book book) {
+        if (!existByISBN(isbn)) {
+            return;
+        }
 
-    // Additional methods for updating and deleting books can be added here
+        String querySQLUpdate = "UPDATE books SET title=?, author=?, synopsis=?, genre=? WHERE isbn=?";
 
-    // Example method to update a book
-    public void updateBook(int id, String title, String synopsis, String isbn, String author, String genre) {
-        // Implementation for updating a book in the database
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement statement = connection.prepareStatement(querySQLUpdate);
 
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+            statement.setString(3, book.getSynopsis());
+            statement.setString(4, book.getGenre());
+            statement.setString(5, book.getIsbn());
+            statement.executeUpdate();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
     }
 
     // Example method to delete a book
@@ -53,7 +64,7 @@ public class BookRepository {
 
     public List<Book> findAllBooks() {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books";   // Example SQL query to retrieve all books
+        String query = "SELECT * FROM books";
         try {
             connection = DBManager.initConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -67,7 +78,6 @@ public class BookRepository {
 
                 Book book = new Book(title, synopsis, isbn, author, genre);
                 books.add(book);
-
             }
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
@@ -75,5 +85,24 @@ public class BookRepository {
             DBManager.closeConnection();
         }
         return books;
+    }
+
+    public boolean existByISBN(String isbn) {
+        String sql = "SELECT COUNT(*) FROM books WHERE isbn = ?";
+
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, isbn);
+            ResultSet response = statement.executeQuery();
+            response.next();
+
+            return response.getInt(1) > 0;
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
+        return false;
     }
 }

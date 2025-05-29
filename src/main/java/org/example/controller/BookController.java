@@ -11,11 +11,20 @@ public class BookController {
     public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    public void createBook(Book book){
+
+    public void createBook(Book book) {
         bookRepository.addBook(book);
+    }
+
+    public void updateBook(String isbn, Book book) {
+        bookRepository.updateBook(isbn, book);
     }
 
     public List<Book> getAllBooks() {
         return bookRepository.findAllBooks();
+    }
+
+    public boolean existByISBN(String isbn) {
+        return bookRepository.existByISBN(isbn);
     }
 }
