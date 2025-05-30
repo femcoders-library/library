@@ -15,15 +15,15 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Library Menu ===\n");
-            System.out.println("1. View all books");
-            System.out.println("2. Add a new book");
-            System.out.println("3. Edit a book");
-            System.out.println("4. Delete a book");
-            System.out.println("5. Find book/s by title");
-            System.out.println("6. Find book/s by author");
-            System.out.println("7. Exit");
-            System.out.print("\nSelect an option: ");
+            System.out.println("\n=== Librería Menu ===\n");
+            System.out.println("1. Ver todos los libros");
+            System.out.println("2. Añadir un nuevo libro");
+            System.out.println("3. Editar un libro");
+            System.out.println("4. Eliminar un libro");
+            System.out.println("5. Buscar libro/s por título");
+            System.out.println("6. Buscar libro/s por autor");
+            System.out.println("7. Salir");
+            System.out.print("\nSeleccciona una opción: ");
 
             String choice = scanner.nextLine();
 
@@ -55,11 +55,11 @@ public class Main {
                     bookView.findByAuthor();
                     break;
                 case "7":
-                    System.out.println("\nGoodbye!");
+                    System.out.println("\nAdiós!");
                     running = false;
                     break;
                 default:
-                    System.out.println("\nInvalid option. Please try again.");
+                    System.out.println("\nOpción inválida. Por favor inténtalo de nuevo.");
             }
         }
         scanner.close();
