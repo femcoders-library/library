@@ -169,4 +169,58 @@ public class BookRepository {
         }
         return false;
     }
+
+    public List<Book> findByTitle(String title) {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books WHERE title = ?";
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, title);
+            ResultSet response = preparedStatement.executeQuery();
+
+            while (response.next()) {
+                String foundTitle = response.getString("title");
+                String synopsis = response.getString("synopsis");
+                String isbn = response.getString("isbn");
+                String author = response.getString("author");
+                String genre = response.getString("genre");
+
+                Book book = new Book(foundTitle, synopsis, isbn, author, genre);
+                books.add(book);
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
+        return books;
+    }
+
+    public List<Book> findByAuthor(String author) {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books WHERE author = ?";
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, author);
+            ResultSet response = preparedStatement.executeQuery();
+
+            while (response.next()) {
+                String title = response.getString("title");
+                String synopsis = response.getString("synopsis");
+                String isbn = response.getString("isbn");
+                String foundAuthor = response.getString("author");
+                String genre = response.getString("genre");
+
+                Book book = new Book(title, synopsis, isbn, foundAuthor, genre);
+                books.add(book);
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
+        return books;
+    }
 }
