@@ -17,10 +17,6 @@ public class BookController {
         bookRepository.addBook(book);
     }
 
-    public void updateBook(String isbn, Book book) {
-        bookRepository.updateBook(isbn, book);
-    }
-
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
         bookRepository.updateBookByField(isbn, fieldsToUpdate);
     }

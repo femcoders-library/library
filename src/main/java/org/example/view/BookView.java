@@ -21,19 +21,6 @@ public class BookView {
         bookController.createBook(book);
     }
 
-    public void updateBook() {
-        System.out.println("Introduce el ISBN del libro que quieras actualizar: ");
-        String isbn = scanner.nextLine();
-
-        if (!bookController.existByISBN(isbn)) {
-            System.out.println("No existe ningún libro con el ISBN introducido");
-            return;
-        }
-
-        Book book = generateBookWithoutISBN();
-        bookController.updateBook(isbn, book);
-    }
-
     public void updateBookByField() {
         System.out.println("Introduzca el ISBN del libro que desea actualizar:");
         String isbn = scanner.nextLine();
@@ -87,20 +74,6 @@ public class BookView {
         return book;
     }
 
-    public Book generateBookWithoutISBN() {
-        System.out.print("Introduce el título del libro: ");
-        String title = scanner.nextLine();
-        System.out.print("Introduce la sinopsis del libro: ");
-        String synopsis = scanner.nextLine();
-        System.out.print("Introduce el/la/los/las autor/a/es/as del libro: ");
-        String author = scanner.nextLine();
-        System.out.print("Introduce el/los género/s del libro: ");
-        String genre = scanner.nextLine();
-
-        Book book = new Book(title, synopsis, null, author, genre);
-
-        return book;
-    }
 
     public void displayBooks() {
 
@@ -134,13 +107,13 @@ public class BookView {
         } else {
             for (Book book : foundBooks) {
                 System.out.printf("""
-                    \nTítulo: %s
-                    Sinopsis: %s
-                    ISBN: %s
-                    Autor/a/es/as: %s
-                    Género/s: %s
-                    \n-----------------------------
-                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                        \nTítulo: %s
+                        Sinopsis: %s
+                        ISBN: %s
+                        Autor/a/es/as: %s
+                        Género/s: %s
+                        \n-----------------------------
+                        """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
             }
         }
     }
@@ -156,13 +129,13 @@ public class BookView {
         } else {
             for (Book book : foundBooks) {
                 System.out.printf("""
-                    \nTítulo: %s
-                    Sinopsis: %s
-                    ISBN: %s
-                    Autor/a/es/as: %s
-                    Género/s: %s
-                    \n-----------------------------
-                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                        \nTítulo: %s
+                        Sinopsis: %s
+                        ISBN: %s
+                        Autor/a/es/as: %s
+                        Género/s: %s
+                        \n-----------------------------
+                        """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
             }
         }
     }

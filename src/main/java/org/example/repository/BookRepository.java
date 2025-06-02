@@ -34,33 +34,6 @@ public class BookRepository {
         }
     }
 
-    public void updateBook(String isbn, Book book) {
-        if (!existByISBN(isbn)) {
-            return;
-        }
-
-        String querySQLUpdate = "UPDATE books SET title=?, author=?, synopsis=?, genre=? WHERE isbn=?";
-
-        try {
-            connection = DBManager.initConnection();
-            PreparedStatement statement = connection.prepareStatement(querySQLUpdate);
-
-            statement.setString(1, book.getTitle());
-            statement.setString(2, book.getAuthor());
-            statement.setString(3, book.getSynopsis());
-            statement.setString(4, book.getGenre());
-            statement.setString(5, book.getIsbn());
-
-            statement.executeUpdate();
-
-            System.out.println("Libro actualizado");
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        } finally {
-            DBManager.closeConnection();
-        }
-    }
-
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
         if (!existByISBN(isbn)) {
             System.out.println("No se encontró ningún libro con este ISBN.");
