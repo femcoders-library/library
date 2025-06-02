@@ -66,7 +66,7 @@ public class Book {
     public String toString() {
         return  "\n  title = '" + title + '\'' + ",\n" +
                 "  synopsis = '" + synopsis + '\'' + ",\n" +
-                "  isbn = '" + isbn + '\'' + ",\n" +
+                "  ISBN = '" + isbn + '\'' + ",\n" +
                 "  author = '" + author + '\'' + ",\n" +
                 "  genre = '" + genre + '\'' + "\n";
     }
