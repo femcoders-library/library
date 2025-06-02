@@ -26,34 +26,7 @@ public class BookRepository {
 
             statement.execute();
 
-            System.out.println("Libro añadido a la librería");
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        } finally {
-            DBManager.closeConnection();
-        }
-    }
-
-    public void updateBook(String isbn, Book book) {
-        if (!existByISBN(isbn)) {
-            return;
-        }
-
-        String querySQLUpdate = "UPDATE books SET title=?, author=?, synopsis=?, genre=? WHERE isbn=?";
-
-        try {
-            connection = DBManager.initConnection();
-            PreparedStatement statement = connection.prepareStatement(querySQLUpdate);
-
-            statement.setString(1, book.getTitle());
-            statement.setString(2, book.getAuthor());
-            statement.setString(3, book.getSynopsis());
-            statement.setString(4, book.getGenre());
-            statement.setString(5, book.getIsbn());
-
-            statement.executeUpdate();
-
-            System.out.println("Libro actualizado");
+            System.out.println("Book added to the library");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
@@ -63,12 +36,12 @@ public class BookRepository {
 
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
         if (!existByISBN(isbn)) {
-            System.out.println("No se encontró ningún libro con este ISBN.");
+            System.out.println("No book was found with this ISBN.");
             return;
         }
 
         if (fieldsToUpdate == null || fieldsToUpdate.isEmpty()) {
-            System.out.println("No hay campos para actualizar.");
+            System.out.println("There are no fields to update.");
             return;
         }
 
@@ -94,9 +67,9 @@ public class BookRepository {
 
             int updated = statement.executeUpdate();
             if (updated > 0) {
-                System.out.println("El libro se actualizó exitosamente.");
+                System.out.println("The book was updated successfully.");
             } else {
-                System.out.println("Error al actualizar el libro.");
+                System.out.println("Error updating the book.");
             }
 
         } catch (SQLException exception) {
@@ -118,7 +91,7 @@ public class BookRepository {
 
             statement.executeUpdate();
 
-            System.out.println("Libro eliminado");
+            System.out.println("Book deleted");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
