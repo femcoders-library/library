@@ -99,14 +99,7 @@ public class BookView {
             System.out.println("No books found with that title.");
         } else {
             for (Book book : foundBooks) {
-                System.out.printf("""
-                        \nTitle: %s
-                        Synopsis: %s
-                        ISBN: %s
-                        Author: %s
-                        Genre: %s
-                        \n-----------------------------
-                        """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                System.out.println(book);
             }
         }
     }
@@ -121,14 +114,7 @@ public class BookView {
             System.out.println("No books found by that author.");
         } else {
             for (Book book : foundBooks) {
-                System.out.printf("""
-                        \nTitle: %s
-                        Synopsis: %s
-                        ISBN: %s
-                        Author: %s
-                        Genre: %s
-                        \n-----------------------------
-                        """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                System.out.println(book);
             }
         }
     }

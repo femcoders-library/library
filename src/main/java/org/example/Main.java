@@ -21,8 +21,8 @@ public class Main {
             System.out.println("2. Add a new book");
             System.out.println("3. Edit a book");
             System.out.println("4. Delete a book");
-            System.out.println("5. Search book(s) by title");
-            System.out.println("6. Search book(s) by author");
+            System.out.println("5. Search book by title");
+            System.out.println("6. Search book by author");
             System.out.println("7. Exit");
             System.out.print("\nSelect an option: ");
 
