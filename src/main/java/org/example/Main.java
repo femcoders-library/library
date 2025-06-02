@@ -1,4 +1,5 @@
 package org.example;
+
 import org.example.controller.BookController;
 import org.example.repository.BookRepository;
 import org.example.view.BookView;
@@ -15,15 +16,16 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Librería Menu ===\n");
-            System.out.println("1. Ver todos los libros");
-            System.out.println("2. Añadir un nuevo libro");
-            System.out.println("3. Editar un libro");
-            System.out.println("4. Eliminar un libro");
-            System.out.println("5. Buscar libro/s por título");
-            System.out.println("6. Buscar libro/s por autor");
-            System.out.println("7. Salir");
-            System.out.print("\nSeleccciona una opción: ");
+            System.out.println("\n=== Library Menu ===\n");
+            System.out.println("1. View all books");
+            System.out.println("2. Add a new book");
+            System.out.println("3. Edit a book");
+            System.out.println("4. Delete a book");
+            System.out.println("5. Search book(s) by title");
+            System.out.println("6. Search book(s) by author");
+            System.out.println("7. Exit");
+            System.out.print("\nSelect an option: ");
+
 
             String choice = scanner.nextLine();
 
@@ -59,7 +61,7 @@ public class Main {
                     running = false;
                     break;
                 default:
-                    System.out.println("\nOpción inválida. Por favor inténtalo de nuevo.");
+                    System.out.println("\nInvalid option. Please try again.");
             }
         }
         scanner.close();
