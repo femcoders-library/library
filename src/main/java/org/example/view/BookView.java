@@ -58,15 +58,15 @@ public class BookView {
     }
 
     public Book generateBook() {
-        System.out.print("Introduce el título del libro: ");
+        System.out.print("Enter the book's title: ");
         String title = scanner.nextLine();
-        System.out.print("Introduce la sinopsis del libro: ");
+        System.out.print("Enter the book's synopsis.: ");
         String synopsis = scanner.nextLine();
-        System.out.print("Introduce el ISBN del libro: ");
+        System.out.print("Enter the book's ISBN: ");
         String isbn = scanner.nextLine();
-        System.out.print("Introduce el/la/los/las autor/a/es/as del libro: ");
+        System.out.print("Enter the book's author: ");
         String author = scanner.nextLine();
-        System.out.print("Introduce el/los género/s del libro: ");
+        System.out.print("Enter the book's genre: ");
         String genre = scanner.nextLine();
 
         Book book = new Book(title, synopsis, isbn, author, genre);

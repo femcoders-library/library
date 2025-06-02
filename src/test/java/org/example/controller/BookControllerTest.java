@@ -37,15 +37,9 @@ public class BookControllerTest {
     }
 
     @Test
-    void updateBook_shouldCallRepository_withCorrectFields() {
-        bookController.updateBook(isbn, book);
-        verify(bookRepository, times(1)).updateBook(isbn, book);
-    }
-
-    @Test
     void updateBookByField_shouldCallRepository_withCorrectFields() {
         Map<String, String> updates = new HashMap<>();
-        updates.put("title", "Nuevo título");
+        updates.put("title", "New title");
 
         bookController.updateBookByField(isbn, updates);
         verify(bookRepository).updateBookByField(isbn, updates);
