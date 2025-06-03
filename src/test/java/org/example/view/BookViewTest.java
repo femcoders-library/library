@@ -33,7 +33,7 @@ public class BookViewTest {
                 "save"
         );
         testScanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        bookView = new BookView(bookController, testScanner); // <- все вірно
+        bookView = new BookView(bookController, testScanner);
     }
 
     @Test

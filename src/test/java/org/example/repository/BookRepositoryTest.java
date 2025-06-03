@@ -3,9 +3,12 @@ package org.example.repository;
 import org.example.model.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BookRepositoryTest {
     private BookRepository bookRepository;
@@ -23,5 +26,31 @@ public class BookRepositoryTest {
         List<Book> books = bookRepository.findAllBooks();
 
         assertFalse(books.isEmpty(), "The list of all books shouldn't be empty");
+    }
+
+    @Test
+    void  updateBookByField__shouldUpdateSpecifiedFields() {
+        Book book = new Book("Original Title", "Original Synopsis", "111-1-11-111111-1", "Original Author", "Original Genre");
+        bookRepository.addBook(book);
+
+        Map<String, String> updates = new HashMap<>();
+        updates.put("title", "Updated Title");
+        updates.put("author", "Updated Author");
+
+        bookRepository.updateBookByField(book.getIsbn(), updates);
+
+        List<Book> updatedBooks = bookRepository.findByTitle("Updated Title");
+        assertFalse(updatedBooks.isEmpty(), "Updated book should be found by new title");
+
+        Book updatedBook = updatedBooks.stream()
+                .filter(b -> b.getIsbn().equals(book.getIsbn()))
+                .findFirst()
+                .orElse(null);
+
+        assertNotNull(updatedBook);
+        assertEquals("Updated Title", updatedBook.getTitle());
+        assertEquals("Updated Author", updatedBook.getAuthor());
+
+        bookRepository.deleteBook(book.getIsbn());
     }
 }
