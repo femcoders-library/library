@@ -40,4 +40,7 @@ public class BookController {
     public List<Book> findByAuthor(String author) {
         return bookRepository.findByAuthor(author);
     }
+    public List<Book> findByGenre(String genre) {
+        return bookRepository.findByGenre(genre);
+    }
 }

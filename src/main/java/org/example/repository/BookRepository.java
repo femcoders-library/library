@@ -196,4 +196,30 @@ public class BookRepository {
         }
         return books;
     }
+    public List<Book> findByGenre(String genre) {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books WHERE genre LIKE ?";
+        try {
+            connection = DBManager.initConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "%" + genre + "%");
+            ResultSet response = preparedStatement.executeQuery();
+
+            while (response.next()) {
+                String title = response.getString("title");
+                String synopsis = response.getString("synopsis");
+                String isbn = response.getString("isbn");
+                String author = response.getString("author");
+                String foundGenre = response.getString("genre");
+
+                Book book = new Book(title, synopsis, isbn, author, foundGenre);
+                books.add(book);
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            DBManager.closeConnection();
+        }
+        return books;
+    }
 }
