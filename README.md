@@ -62,7 +62,7 @@ Terminal-based interface displaying:
 - Input book data through console
 - Validate ISBN uniqueness
 - Update entire book or individual fields
-- Search books by title or author (partial match optional)
+- Search books by title, author or genre (using LIKE queries)
 - CRUD operations connected to a real MySQL database
 
 ### Non-functional
