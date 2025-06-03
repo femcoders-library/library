@@ -29,7 +29,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void  updateBookByField__shouldUpdateSpecifiedFields() {
+    void updateBookByField_shouldUpdateSpecifiedFields() {
         Book book = new Book("Original Title", "Original Synopsis", "111-1-11-111111-1", "Original Author", "Original Genre");
         bookRepository.addBook(book);
 
