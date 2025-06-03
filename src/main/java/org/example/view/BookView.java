@@ -76,16 +76,8 @@ public class BookView {
 
 
     public void displayBooks() {
-
         for (Book book : bookController.getAllBooks()) {
-            System.out.printf("""
-                    \nTitle: %s
-                    ISBN: %s
-                    Author: %s
-                    Genre: %s
-                    \n-----------------------------
-                    """, book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre());
-
+            System.out.println(book);
         }
     }
 
@@ -117,6 +109,62 @@ public class BookView {
                 System.out.println(book);
             }
         }
+    }
+
+    public void showMenu() {
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while (running) {
+            System.out.println("\n=== Library Menu ===\n");
+            System.out.println("1. View all books");
+            System.out.println("2. Add a new book");
+            System.out.println("3. Edit a book");
+            System.out.println("4. Delete a book");
+            System.out.println("5. Search book by title");
+            System.out.println("6. Search book by author");
+            System.out.println("7. Exit");
+            System.out.print("\nSelect an option: ");
+
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("-----------------------------");
+                    displayBooks();
+                    break;
+                case "2":
+                    System.out.println("-----------------------------");
+                    createBook();
+                    break;
+                case "3":
+                    // Uncomment the one you use
+                    // bookView.updateBook();
+                    System.out.println("-----------------------------");
+                    updateBookByField();
+                    break;
+                case "4":
+                    System.out.println("-----------------------------");
+                    deleteBook();
+                    break;
+                case "5":
+                    System.out.println("-----------------------------");
+                    findByTitle();
+                    break;
+                case "6":
+                    System.out.println("-----------------------------");
+                    findByAuthor();
+                    break;
+                case "7":
+                    System.out.println("\nAdiós!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("\nInvalid option. Please try again.");
+            }
+        }
+        scanner.close();
     }
 
 }
