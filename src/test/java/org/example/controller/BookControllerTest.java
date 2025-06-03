@@ -44,4 +44,40 @@ public class BookControllerTest {
         bookController.updateBookByField(isbn, updates);
         verify(bookRepository).updateBookByField(isbn, updates);
     }
+
+    @Test
+    void deleteBook_shouldCallRepository() {
+        bookController.deleteBook(isbn);
+        verify(bookRepository, times(1)).deleteBook(isbn);
+    }
+
+    @Test
+    void findAllBooks_shouldCallRepository() {
+        bookController.getAllBooks();
+        verify(bookRepository, times(1)).findAllBooks();
+    }
+
+    @Test
+    void existByISBN_shouldCallRepository() {
+        bookController.existByISBN(isbn);
+        verify(bookRepository, times(1)).existByISBN(isbn);
+    }
+
+    @Test
+    void findByTitle_shouldCallRepository() {
+        bookController.findByTitle(book.getTitle());
+        verify(bookRepository, times(1)).findByTitle(book.getTitle());
+    }
+
+    @Test
+    void findByAuthor_shouldCallRepository() {
+        bookController.findByAuthor(book.getAuthor());
+        verify(bookRepository, times(1)).findByAuthor(book.getAuthor());
+    }
+
+    @Test
+    void findByGenre_shouldCallRepository() {
+        bookController.findByGenre(book.getGenre());
+        verify(bookRepository, times(1)).findByGenre(book.getGenre());
+    }
 }
