@@ -145,11 +145,11 @@ public class BookRepository {
 
     public List<Book> findByTitle(String title) {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books WHERE title = ?";
+        String query = "SELECT * FROM books WHERE title LIKE ?";
         try {
             connection = DBManager.initConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, title);
+            preparedStatement.setString(1, "%" + title + "%");
             ResultSet response = preparedStatement.executeQuery();
 
             while (response.next()) {
