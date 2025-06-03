@@ -172,11 +172,11 @@ public class BookRepository {
 
     public List<Book> findByAuthor(String author) {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books WHERE author = ?";
+        String query = "SELECT * FROM books WHERE author LIKE ?";
         try {
             connection = DBManager.initConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, author);
+            preparedStatement.setString(1, "%" + author + "%");
             ResultSet response = preparedStatement.executeQuery();
 
             while (response.next()) {

@@ -97,7 +97,7 @@ public class BookView {
     }
 
     public void findByAuthor() {
-        System.out.print("Enter the title of the book to search:");
+        System.out.print("Enter the author of the book to search:");
         String author = scanner.nextLine();
 
         List<Book> foundBooks = bookController.findByAuthor(author);
