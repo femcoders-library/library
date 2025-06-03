@@ -11,10 +11,12 @@ import java.util.Scanner;
 
 public class BookView {
     private final BookController bookController;
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
 
-    public BookView(BookController bookController) {
+    public BookView(BookController bookController, Scanner scanner) {
         this.bookController = bookController;
+        this.scanner = scanner;
+
     }
 
     public void createBook() {
@@ -33,13 +35,13 @@ public class BookView {
 
         Map<String, String> fieldsToUpdate = new HashMap<>();
         while (true) {
-            System.out.println("Which field do you want to update? (title, synopsis, author, genre): ");
-            System.out.println("Type “exit” to quit.");
+            System.out.println("Which field do you want to update? (title, synopsis, isbn, author, genre): ");
+            System.out.println("Type “save” to quit.");
             String field = scanner.nextLine().toLowerCase();
 
             if (field.equals("save")) break;
 
-            if (!List.of("title", "synopsis", "author", "genre").contains(field)) {
+            if (!List.of("title", "synopsis", "isbn", "author", "genre").contains(field)) {
                 System.out.println(AnsiStyle.stylingText("Invalid field.", AnsiStyle.RED));
                 continue;
             }
@@ -128,7 +130,6 @@ public class BookView {
     }
 
     public void showMenu() {
-        Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
@@ -142,7 +143,6 @@ public class BookView {
             System.out.println("7. Search book by genre");
             System.out.println("8. Exit");
             System.out.print("\nSelect an option: ");
-
 
             String choice = scanner.nextLine();
 
@@ -185,5 +185,4 @@ public class BookView {
         }
         scanner.close();
     }
-
 }

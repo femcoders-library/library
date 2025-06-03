@@ -1,7 +1,6 @@
-package org.example.controller;
+package org.example.repository;
 
 import org.example.model.Book;
-import org.example.repository.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

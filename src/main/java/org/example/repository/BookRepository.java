@@ -35,11 +35,6 @@ public class BookRepository {
     }
 
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
-        if (!existByISBN(isbn)) {
-            System.out.println("No book was found with this ISBN.");
-            return;
-        }
-
         if (fieldsToUpdate == null || fieldsToUpdate.isEmpty()) {
             System.out.println("There are no fields to update.");
             return;
