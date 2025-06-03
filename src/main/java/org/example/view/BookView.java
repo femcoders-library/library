@@ -111,6 +111,21 @@ public class BookView {
         }
     }
 
+    public void findByGenre() {
+        System.out.print("Enter the genre of the book to search:");
+        String genre = scanner.nextLine();
+
+        List<Book> foundBooks = bookController.findByGenre(genre);
+
+        if (foundBooks.isEmpty()) {
+            System.out.println("No books found by that genre.");
+        } else {
+            for (Book book : foundBooks) {
+                System.out.println(book);
+            }
+        }
+    }
+
     public void showMenu() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -123,7 +138,8 @@ public class BookView {
             System.out.println("4. Delete a book");
             System.out.println("5. Search book by title");
             System.out.println("6. Search book by author");
-            System.out.println("7. Exit");
+            System.out.println("7. Search book by genre");
+            System.out.println("8. Exit");
             System.out.print("\nSelect an option: ");
 
 
@@ -139,8 +155,6 @@ public class BookView {
                     createBook();
                     break;
                 case "3":
-                    // Uncomment the one you use
-                    // bookView.updateBook();
                     System.out.println("-----------------------------");
                     updateBookByField();
                     break;
@@ -157,7 +171,11 @@ public class BookView {
                     findByAuthor();
                     break;
                 case "7":
-                    System.out.println("\nAdiós!");
+                    System.out.println("-----------------------------");
+                    findByGenre();
+                    break;
+                case "8":
+                    System.out.println("\nBye! Thanks for using our library!");
                     running = false;
                     break;
                 default:
