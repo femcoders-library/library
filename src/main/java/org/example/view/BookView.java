@@ -2,6 +2,7 @@ package org.example.view;
 
 import org.example.controller.BookController;
 import org.example.model.Book;
+import org.example.util.AnsiStyle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class BookView {
         String isbn = scanner.nextLine();
 
         if (!bookController.existByISBN(isbn)) {
-            System.out.println("No book exists with this ISBN.");
+            System.out.println(AnsiStyle.stylingText("No book exists with this ISBN.", AnsiStyle.RED));
             return;
         }
 
@@ -39,7 +40,7 @@ public class BookView {
             if (field.equals("save")) break;
 
             if (!List.of("title", "synopsis", "author", "genre").contains(field)) {
-                System.out.println("Invalid field.");
+                System.out.println(AnsiStyle.stylingText("Invalid field.", AnsiStyle.RED));
                 continue;
             }
 
@@ -88,7 +89,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByTitle(title);
 
         if (foundBooks.isEmpty()) {
-            System.out.println("No books found with that title.");
+            System.out.println(AnsiStyle.stylingText("No books found with that title.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -103,7 +104,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByAuthor(author);
 
         if (foundBooks.isEmpty()) {
-            System.out.println("No books found by that author.");
+            System.out.println(AnsiStyle.stylingText("No books found by that author.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -118,7 +119,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByGenre(genre);
 
         if (foundBooks.isEmpty()) {
-            System.out.println("No books found by that genre.");
+            System.out.println(AnsiStyle.stylingText("No books found by that genre.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -131,7 +132,7 @@ public class BookView {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n=== Library Menu ===\n");
+            System.out.println(AnsiStyle.stylingText("\n=== Library Menu ===\n", AnsiStyle.BG_YELLOW, AnsiStyle.UNDERLINE, AnsiStyle.BOLD));
             System.out.println("1. View all books");
             System.out.println("2. Add a new book");
             System.out.println("3. Edit a book");
@@ -179,7 +180,7 @@ public class BookView {
                     running = false;
                     break;
                 default:
-                    System.out.println("\nInvalid option. Please try again.");
+                    System.out.println(AnsiStyle.stylingText("\nInvalid option. Please try again.", AnsiStyle.RED));
             }
         }
         scanner.close();
