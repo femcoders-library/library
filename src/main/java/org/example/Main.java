@@ -13,5 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         BookView bookView = new BookView(bookController, scanner);
         bookView.showMenu();
+
+        scanner.close();
     }
 }
