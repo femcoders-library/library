@@ -108,7 +108,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByAuthor(author);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nNo books found by that author.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that author.⚠️", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -123,7 +123,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByGenre(genre);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nNo books found by that genre.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that genre.⚠️", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -138,15 +138,15 @@ public class BookView {
             System.out.println(AnsiStyle.stylingText("📚✨ Welcome to the Library Menu ✨📚", UNDERLINE, BOLD));
             System.out.println(AnsiStyle.stylingText("\nPlease choose an option:", BOLD));
             System.out.println(AnsiStyle.stylingText("--------------------------------------", BOLD));
-            System.out.println(AnsiStyle.stylingText("\n1️⃣  View all books 👀", CYAN));
-            System.out.println(AnsiStyle.stylingText("2️⃣  Add a new book 📖", CYAN));
-            System.out.println(AnsiStyle.stylingText("3️⃣  Edit a book ✏️", CYAN));
-            System.out.println(AnsiStyle.stylingText("4️⃣  Delete a book ️❌", RED));
-            System.out.println(AnsiStyle.stylingText("5️⃣  Search by title 📕", BLUE));
-            System.out.println(AnsiStyle.stylingText("6️⃣  Search by author 🧑‍", BLUE));
-            System.out.println(AnsiStyle.stylingText("7️⃣  Search by genre 📚", BLUE));
-            System.out.println(AnsiStyle.stylingText("8️⃣  Exit 🚪👋",MAGENTA));
-            System.out.print(AnsiStyle.stylingText("\n👉 Select an option: ", BOLD));
+            System.out.println(AnsiStyle.stylingText("\n1. View all books 👀", CYAN));
+            System.out.println(AnsiStyle.stylingText("2.  Add a new book 📖", CYAN));
+            System.out.println(AnsiStyle.stylingText("3.  Edit a book ✏️", CYAN));
+            System.out.println(AnsiStyle.stylingText("4.  Delete a book ️❌", RED));
+            System.out.println(AnsiStyle.stylingText("5.  Search by title 📕", BLUE));
+            System.out.println(AnsiStyle.stylingText("6.  Search by author 🧑‍", BLUE));
+            System.out.println(AnsiStyle.stylingText("7.  Search by genre 📚", BLUE));
+            System.out.println(AnsiStyle.stylingText("8.  Exit 🚪👋",MAGENTA));
+            System.out.print(AnsiStyle.stylingText("\n👉 Write a number to choose an option and press enter : ", BOLD));
 
             String choice = scanner.nextLine();
 
