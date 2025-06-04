@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import static org.example.util.AnsiStyle.*;
+
 public class BookView {
     private final BookController bookController;
     private Scanner scanner;
@@ -133,16 +135,18 @@ public class BookView {
         boolean running = true;
 
         while (running) {
-            System.out.println(AnsiStyle.stylingText("\n=== Library Menu ===\n", AnsiStyle.BG_YELLOW, AnsiStyle.UNDERLINE, AnsiStyle.BOLD));
-            System.out.println("1. View all books");
-            System.out.println("2. Add a new book");
-            System.out.println("3. Edit a book");
-            System.out.println("4. Delete a book");
-            System.out.println("5. Search book by title");
-            System.out.println("6. Search book by author");
-            System.out.println("7. Search book by genre");
-            System.out.println("8. Exit");
-            System.out.print("\nSelect an option: ");
+            System.out.println(AnsiStyle.stylingText("📚✨ Welcome to the Library Menu ✨📚", UNDERLINE, BOLD));
+            System.out.println(AnsiStyle.stylingText("\nPlease choose an option:", BOLD));
+            System.out.println(AnsiStyle.stylingText("--------------------------------------", BOLD));
+            System.out.println(AnsiStyle.stylingText("\n1️⃣  View all books 👀", CYAN));
+            System.out.println(AnsiStyle.stylingText("2️⃣  Add a new book 📖", CYAN));
+            System.out.println(AnsiStyle.stylingText("3️⃣  Edit a book ✏️", CYAN));
+            System.out.println(AnsiStyle.stylingText("4️⃣  Delete a book ️❌", RED));
+            System.out.println(AnsiStyle.stylingText("5️⃣  Search by title 📕", BLUE));
+            System.out.println(AnsiStyle.stylingText("6️⃣  Search by author 🧑‍", BLUE));
+            System.out.println(AnsiStyle.stylingText("7️⃣  Search by genre 📚", BLUE));
+            System.out.println(AnsiStyle.stylingText("8️⃣  Exit 🚪👋",MAGENTA));
+            System.out.print(AnsiStyle.stylingText("\n👉 Select an option: ", BOLD));
 
             String choice = scanner.nextLine();
 
