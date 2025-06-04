@@ -1,7 +1,6 @@
 package org.example.view;
 
 import org.example.controller.BookController;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -24,7 +23,6 @@ public class BookViewTest {
     @Mock
     private BookController bookController;
 
-    private Scanner testScanner;
     private BookView bookView;
 
     @Test
@@ -35,7 +33,7 @@ public class BookViewTest {
                 "New Title",
                 "save"
         );
-        testScanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        Scanner testScanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
         bookView = new BookView(bookController, testScanner);
 
         when(bookController.existByISBN("1234567890")).thenReturn(true);

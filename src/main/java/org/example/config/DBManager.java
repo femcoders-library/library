@@ -23,12 +23,11 @@ public class DBManager {
         return connection;
     }
 
-    public static Connection closeConnection() {
+    public static void closeConnection() {
         try {
             connection.close();
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         }
-        return connection;
     }
 }

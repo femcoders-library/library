@@ -30,7 +30,7 @@ public class BookRepositoryTest {
 
     @Test
     void updateBookByField_shouldUpdateSpecifiedFields() {
-        Book book = new Book("Original Title", "Original Synopsis", "111-1-11-111111-1", "Original Author", "Original Genre");
+        Book book = new Book("Original Title", "Original Synopsis", "1111111111111", "Original Author", "Original Genre");
         bookRepository.addBook(book);
 
         Map<String, String> updates = new HashMap<>();
@@ -40,7 +40,7 @@ public class BookRepositoryTest {
         bookRepository.updateBookByField(book.getIsbn(), updates);
 
         List<Book> updatedBooks = bookRepository.findByTitle("Updated Title");
-        assertFalse(updatedBooks.isEmpty(), "Updated book should be found by new title");
+        assertFalse(updatedBooks.isEmpty());
 
         Book updatedBook = updatedBooks.stream()
                 .filter(b -> b.getIsbn().equals(book.getIsbn()))
@@ -50,6 +50,19 @@ public class BookRepositoryTest {
         assertNotNull(updatedBook);
         assertEquals("Updated Title", updatedBook.getTitle());
         assertEquals("Updated Author", updatedBook.getAuthor());
+
+        bookRepository.deleteBook(book.getIsbn());
+    }
+
+    @Test
+    void updateBookByField_shouldIgnoreInvalidFieldNames() {
+        Book book = new Book("Original Title", "Original Synopsis", "1111111111111", "Original Author", "Original Genre");
+        bookRepository.addBook(book);
+
+        Map<String, String> updates = new HashMap<>();
+        updates.put("nonexistent_field", "Value");
+
+        assertDoesNotThrow(() -> bookRepository.updateBookByField(book.getIsbn(), updates));
 
         bookRepository.deleteBook(book.getIsbn());
     }

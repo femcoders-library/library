@@ -13,7 +13,7 @@ import static org.example.util.AnsiStyle.*;
 
 public class BookView {
     private final BookController bookController;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public BookView(BookController bookController, Scanner scanner) {
         this.bookController = bookController;
@@ -86,7 +86,7 @@ public class BookView {
                     Autor/a/es/as: %s
                     Género/s: %s
                     -----------------------------
-                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                    """, book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre());
         }
     }
 
