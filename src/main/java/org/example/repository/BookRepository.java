@@ -2,11 +2,14 @@ package org.example.repository;
 
 import org.example.config.DBManager;
 import org.example.model.Book;
+import org.example.util.AnsiStyle;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.example.util.AnsiStyle.RED;
 
 public class BookRepository {
 
@@ -26,7 +29,7 @@ public class BookRepository {
 
             statement.execute();
 
-            System.out.println("Book added to the library");
+            System.out.println("\nBook added to the library ✅");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
@@ -36,7 +39,7 @@ public class BookRepository {
 
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
         if (fieldsToUpdate == null || fieldsToUpdate.isEmpty()) {
-            System.out.println("There are no fields to update.");
+            System.out.println(AnsiStyle.stylingText("\nThere are no fields to update.⚠️", RED));
             return;
         }
 
@@ -62,9 +65,9 @@ public class BookRepository {
 
             int updated = statement.executeUpdate();
             if (updated > 0) {
-                System.out.println("The book was updated successfully.");
+                System.out.println("\nThe book was updated successfully. ✅");
             } else {
-                System.out.println("Error updating the book.");
+                System.out.println(AnsiStyle.stylingText("Error updating the book.⚠️", RED));
             }
 
         } catch (SQLException exception) {
@@ -86,7 +89,7 @@ public class BookRepository {
 
             statement.executeUpdate();
 
-            System.out.println("Book deleted");
+            System.out.println("\nBook deleted from the library successfully. ✅");
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         } finally {
