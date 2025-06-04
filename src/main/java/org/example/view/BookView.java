@@ -25,28 +25,28 @@ public class BookView {
     }
 
     public void updateBookByField() {
-        System.out.println("Enter the ISBN of the book you want to update:");
+        System.out.println("\nEnter the ISBN of the book you want to update:");
         String isbn = scanner.nextLine();
 
         if (!bookController.existByISBN(isbn)) {
-            System.out.println(AnsiStyle.stylingText("No book exists with this ISBN.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo book exists with this ISBN.", AnsiStyle.RED));
             return;
         }
 
         Map<String, String> fieldsToUpdate = new HashMap<>();
         while (true) {
-            System.out.println("Which field do you want to update? (title, synopsis, isbn, author, genre): ");
-            System.out.println("Type “save” to quit.");
+            System.out.println("\nWhich field do you want to update? (title, synopsis, isbn, author, genre): ");
+            System.out.println("\nType “save” to finish updating.");
             String field = scanner.nextLine().toLowerCase();
 
             if (field.equals("save")) break;
 
             if (!List.of("title", "synopsis", "isbn", "author", "genre").contains(field)) {
-                System.out.println(AnsiStyle.stylingText("Invalid field.", AnsiStyle.RED));
+                System.out.println(AnsiStyle.stylingText("\nInvalid field.", AnsiStyle.RED));
                 continue;
             }
 
-            System.out.println("Enter a new value for " + field + ":");
+            System.out.println("\nEnter a new value for " + field + ":");
             String value = scanner.nextLine();
             fieldsToUpdate.put(field, value);
         }
@@ -55,21 +55,21 @@ public class BookView {
     }
 
     public void deleteBook() {
-        System.out.println("Enter the ISBN of the book you want to remove from the library: ");
+        System.out.println("\nEnter the ISBN of the book you want to remove from the library: ");
         String isbn = scanner.nextLine();
         bookController.deleteBook(isbn);
     }
 
     public Book generateBook() {
-        System.out.print("Enter the book's title: ");
+        System.out.print("\nEnter the book's title: ");
         String title = scanner.nextLine();
-        System.out.print("Enter the book's synopsis.: ");
+        System.out.print("\nEnter the book's synopsis.: ");
         String synopsis = scanner.nextLine();
-        System.out.print("Enter the book's ISBN: ");
+        System.out.print("\nEnter the book's ISBN: ");
         String isbn = scanner.nextLine();
-        System.out.print("Enter the book's author: ");
+        System.out.print("\nEnter the book's author: ");
         String author = scanner.nextLine();
-        System.out.print("Enter the book's genre: ");
+        System.out.print("\nEnter the book's genre: ");
         String genre = scanner.nextLine();
 
         Book book = new Book(title, synopsis, isbn, author, genre);
@@ -85,13 +85,13 @@ public class BookView {
     }
 
     public void findByTitle() {
-        System.out.print("Enter the title of the book to search for: ");
+        System.out.print("\nEnter the title of the book to search for: ");
         String title = scanner.nextLine();
 
         List<Book> foundBooks = bookController.findByTitle(title);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("No books found with that title.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found with that title.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -100,13 +100,13 @@ public class BookView {
     }
 
     public void findByAuthor() {
-        System.out.print("Enter the author of the book to search:");
+        System.out.print("\nEnter the author of the book to search:");
         String author = scanner.nextLine();
 
         List<Book> foundBooks = bookController.findByAuthor(author);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("No books found by that author.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that author.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -115,13 +115,13 @@ public class BookView {
     }
 
     public void findByGenre() {
-        System.out.print("Enter the genre of the book to search:");
+        System.out.print("\nEnter the genre of the book to search:");
         String genre = scanner.nextLine();
 
         List<Book> foundBooks = bookController.findByGenre(genre);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("No books found by that genre.", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that genre.", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
