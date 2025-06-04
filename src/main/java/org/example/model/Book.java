@@ -16,8 +16,7 @@ public class Book {
         this.genre = genre;
     }
 
-    public Book() {
-    }
+    public Book() {}
 
     public int getId() {
         return id;
@@ -70,6 +69,5 @@ public class Book {
                 "  author = '" + author + '\'' + ",\n" +
                 "  genre = '" + genre + '\'' + "\n";
     }
-
 }
 

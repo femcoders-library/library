@@ -3,7 +3,6 @@ package org.example.util;
 public enum AnsiStyle {
 
     RESET("\u001B[0m"),
-
     BLACK("\u001B[30m"),
     RED("\u001B[31m"),
     GREEN("\u001B[32m"),
