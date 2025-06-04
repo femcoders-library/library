@@ -39,7 +39,7 @@ public class BookRepository {
 
     public void updateBookByField(String isbn, Map<String, String> fieldsToUpdate) {
         if (fieldsToUpdate == null || fieldsToUpdate.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nThere are no fields to update.⚠️", RED));
+            System.out.println(AnsiStyle.stylingText("\nThere are no fields to update ⚠️", RED));
             return;
         }
 
@@ -67,7 +67,7 @@ public class BookRepository {
             if (updated > 0) {
                 System.out.println("\nThe book was updated successfully. ✅");
             } else {
-                System.out.println(AnsiStyle.stylingText("Error updating the book.⚠️", RED));
+                System.out.println(AnsiStyle.stylingText("Error updating the book ⚠️", RED));
             }
 
         } catch (SQLException exception) {
