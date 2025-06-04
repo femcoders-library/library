@@ -141,7 +141,7 @@ public class BookView {
         while (running) {
             System.out.println(AnsiStyle.stylingText("\n📚✨ Welcome to the Library Menu ✨📚", UNDERLINE, BOLD));
             System.out.println(AnsiStyle.stylingText("\nPlease choose an option:", BOLD));
-            System.out.println(AnsiStyle.stylingText("\n1. View all books 👀", CYAN));
+            System.out.println(AnsiStyle.stylingText("\n1.  View all books 👀", CYAN));
             System.out.println(AnsiStyle.stylingText("2.  Add a new book 📖", CYAN));
             System.out.println(AnsiStyle.stylingText("3.  Edit a book ✏️", CYAN));
             System.out.println(AnsiStyle.stylingText("4.  Delete a book ️❌", RED));
