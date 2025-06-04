@@ -13,7 +13,7 @@ import static org.example.util.AnsiStyle.*;
 
 public class BookView {
     private final BookController bookController;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public BookView(BookController bookController, Scanner scanner) {
         this.bookController = bookController;
@@ -30,7 +30,7 @@ public class BookView {
         String isbn = scanner.nextLine();
 
         if (!bookController.existByISBN(isbn)) {
-            System.out.println(AnsiStyle.stylingText("\nNo book exists with this ISBN.⚠️", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo book exists with this ISBN ⚠️", AnsiStyle.RED));
             return;
         }
 
@@ -43,7 +43,7 @@ public class BookView {
             if (field.equals("save")) break;
 
             if (!List.of("title", "synopsis", "isbn", "author", "genre").contains(field)) {
-                System.out.println(AnsiStyle.stylingText("\nInvalid field.⚠️", AnsiStyle.RED));
+                System.out.println(AnsiStyle.stylingText("\nInvalid field ⚠️", AnsiStyle.RED));
                 continue;
             }
 
@@ -81,13 +81,12 @@ public class BookView {
     public void displayBooks() {
         for (Book book : bookController.getAllBooks()) {
             System.out.printf("""
-                    Add commentMore actions
                     Título: %s
                     ISBN: %s
                     Autor/a/es/as: %s
                     Género/s: %s
                     -----------------------------
-                    """, book.getTitle(), book.getSynopsis(), book.getIsbn(), book.getAuthor(), book.getGenre());
+                    """, book.getTitle(), book.getIsbn(), book.getAuthor(), book.getGenre());
         }
     }
 
@@ -98,7 +97,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByTitle(title);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nNo books found with that title.⚠️", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found with that title ⚠️", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -113,7 +112,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByAuthor(author);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nNo books found by that author.⚠️", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that author ⚠️", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -128,7 +127,7 @@ public class BookView {
         List<Book> foundBooks = bookController.findByGenre(genre);
 
         if (foundBooks.isEmpty()) {
-            System.out.println(AnsiStyle.stylingText("\nNo books found by that genre.⚠️", AnsiStyle.RED));
+            System.out.println(AnsiStyle.stylingText("\nNo books found by that genre ⚠️", AnsiStyle.RED));
         } else {
             for (Book book : foundBooks) {
                 System.out.println(book);
@@ -142,7 +141,7 @@ public class BookView {
         while (running) {
             System.out.println(AnsiStyle.stylingText("\n📚✨ Welcome to the Library Menu ✨📚", UNDERLINE, BOLD));
             System.out.println(AnsiStyle.stylingText("\nPlease choose an option:", BOLD));
-            System.out.println(AnsiStyle.stylingText("\n1. View all books 👀", CYAN));
+            System.out.println(AnsiStyle.stylingText("\n1.  View all books 👀", CYAN));
             System.out.println(AnsiStyle.stylingText("2.  Add a new book 📖", CYAN));
             System.out.println(AnsiStyle.stylingText("3.  Edit a book ✏️", CYAN));
             System.out.println(AnsiStyle.stylingText("4.  Delete a book ️❌", RED));
